@@ -221,4 +221,3 @@ require 'zen-mode'.setup {
   -- }
 }
 -- require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
--- test
