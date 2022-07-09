@@ -8,23 +8,14 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
-vim.opt.relativenumber = true
-vim.opt.wrap = true
-vim.opt.tabstop = 4
 
 -- general
 lvim.log.level = "warn"
 -- lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
 -- to disable icons and use a minimalist setup, uncomment the following
 lvim.use_icons = false
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
-lvim.keys.normal_mode["sh"] = ":lua vim.lsp.buf.hover()<cr>"
-lvim.keys.normal_mode["<leader>zen"] = ":ZenMode<cr>"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -49,16 +40,6 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 
 -- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
-}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -184,13 +165,13 @@ lvim.plugins = {
   { 'phaazon/hop.nvim' },
   { 'tpope/vim-surround' },
   { 'hrsh7th/cmp-calc' },
-  { '' },
-  { '' },
-  { '' },
-  { '' },
-  { '' },
-  { '' },
-  { '' },
+  { 'gruvbox-community/gruvbox' },
+  -- { '' },
+  -- { '' },
+  -- { '' },
+  -- { '' },
+  -- { '' },
+  -- { '' },
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
@@ -220,9 +201,4 @@ require 'hop'.setup {
   keys = 'aoeuhtns',
   multi_windows = true
 }
-lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>"
-lvim.keys.normal_mode["<leader>w"] = "<cmd>HopWordAC<cr>"
-lvim.keys.normal_mode["<leader>b"] = "<cmd>HopWordBC<cr>"
-lvim.keys.normal_mode["<leader>j"] = "<cmd>HopLineAC<cr>"
-lvim.keys.normal_mode["<leader>k"] = "<cmd>HopLineBC<cr>"
-lvim.keys.normal_mode["<leader><leader>"] = "<cmd>HopPattern<cr>"
+require 'skogix'
