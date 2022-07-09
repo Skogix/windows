@@ -195,8 +195,6 @@ lvim.plugins = {
   {
     'https://github.com/tpope/vim-surround'
   },
-  { 'https://github.com/preservim/tagbar' },
-  { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
 
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -221,3 +219,4 @@ require 'zen-mode'.setup {
   -- }
 }
 -- require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+-- teasot
