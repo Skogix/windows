@@ -159,7 +159,6 @@ lvim.plugins = {
   },
   { "ionide/Ionide-vim" },
   { "https://github.com/folke/zen-mode.nvim" },
-  { "antoinemadec/FixCursorHold.nvim" },
   { 'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim' },
   { 'phaazon/hop.nvim' },
