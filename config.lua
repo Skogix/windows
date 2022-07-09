@@ -176,26 +176,21 @@ lvim.plugins = {
       }
     end;
   },
-  {
-    "https://github.com/ionide/Ionide-vim"
-  },
-  {
-    "https://github.com/folke/zen-mode.nvim"
-  },
-  {
-    "antoinemadec/FixCursorHold.nvim"
-  },
-  {
-    'kosayoda/nvim-lightbulb',
-    requires = 'antoinemadec/FixCursorHold.nvim',
-  },
-  {
-    'https://github.com/easymotion/vim-easymotion'
-  },
-  {
-    'https://github.com/tpope/vim-surround'
-  },
-
+  { "ionide/Ionide-vim" },
+  { "https://github.com/folke/zen-mode.nvim" },
+  { "antoinemadec/FixCursorHold.nvim" },
+  { 'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim' },
+  { 'phaazon/hop.nvim' },
+  { 'tpope/vim-surround' },
+  { 'hrsh7th/cmp-calc' },
+  { '' },
+  { '' },
+  { '' },
+  { '' },
+  { '' },
+  { '' },
+  { '' },
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
@@ -211,6 +206,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 require 'ionide'.setup {}
+-- test
+-- tutu
 require 'zen-mode'.setup {
   -- window = {
   --   backdrop = 0.9, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
@@ -219,4 +216,13 @@ require 'zen-mode'.setup {
   -- }
 }
 -- require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
--- teasot
+require 'hop'.setup {
+  keys = 'aoeuhtns',
+  multi_windows = true
+}
+lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>"
+lvim.keys.normal_mode["<leader>w"] = "<cmd>HopWordAC<cr>"
+lvim.keys.normal_mode["<leader>b"] = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode["<leader>j"] = "<cmd>HopLineAC<cr>"
+lvim.keys.normal_mode["<leader>k"] = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode["<leader><leader>"] = "<cmd>HopPattern<cr>"
