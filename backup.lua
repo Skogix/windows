@@ -1,45 +1,28 @@
-# vim: set foldmethod=marker:
--- settings{{{
+--{{{ Other
+
+--[[
+lvim is the global options object
+
+Linters should be
+filled in as strings with either
+a global executable or a path to
+an executable
+]]
+-- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+
+
+-- general
 lvim.log.level = "warn"
 -- lvim.format_on_save = true
 -- to disable icons and use a minimalist setup, uncomment the following
 lvim.use_icons = false
-vim.opt.relativenumber = true
-vim.opt.wrap = true
-vim.opt.tabstop = 4
-
-lvim.colorscheme = "gruvbox"
-lvim.leader = "space"
---}}}
--- mappings{{{
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
-lvim.keys.normal_mode["sh"] = ":lua vim.lsp.buf.hover()<cr>"
-lvim.keys.normal_mode["<leader>zen"] = ":ZenMode<cr>"
-lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>"
-lvim.keys.normal_mode["<leader>w"] = "<cmd>HopWordAC<cr>"
-lvim.keys.normal_mode["<leader>b"] = "<cmd>HopWordBC<cr>"
-lvim.keys.normal_mode["<leader>j"] = "<cmd>HopLineAC<cr>"
-lvim.keys.normal_mode["<leader>k"] = "<cmd>HopLineBC<cr>"
-lvim.keys.normal_mode["<leader><leader>"] = "<cmd>HopPattern<cr>"
-
-lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
-}
 -- keymappings [view all the defaults by pressing <leader>Lk]
 -- add your own keymapping
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )}}}
--- telescope{{{
+-- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
@@ -56,8 +39,11 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-j>"] = actions.move_selection_next,
     ["<C-k>"] = actions.move_selection_previous,
   },
-} --}}}
--- builtin options{{{
+}
+
+-- Use which-key to add extra bindings with the leader-key prefix
+-- TODO: User Config for predefined plugins
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
@@ -65,8 +51,10 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.folder = false
-lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = true --}}}
--- treesitter{{{
+lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = true
+
+
+
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -84,8 +72,8 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true --}}}
--- lsp{{{
+lvim.builtin.treesitter.highlight.enabled = true
+
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
@@ -145,8 +133,9 @@ lvim.lsp.automatic_servers_installation = false
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "javascript", "python" },
 --   },
--- }}}}
--- plugins{{{
+-- }
+
+-- Additional Plugins
 lvim.plugins = {
   {
     "folke/trouble.nvim",
@@ -184,8 +173,7 @@ lvim.plugins = {
   -- { '' },
   -- { '' },
   -- { '' },
-} --}}}
--- autocmd{{{
+}
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
@@ -200,19 +188,27 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 require 'ionide'.setup {}
+-- test
+-- tutu
 require 'zen-mode'.setup {
   -- window = {
   --   backdrop = 0.9, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
   --   width = 120, -- width of the Zen window
   --   height = 1, -- height of the Zen window
   -- }
-} --}}}
--- require{{{
+}
 -- require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
 require 'hop'.setup {
   keys = 'aoeuhtns',
   multi_windows = true
 }
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" --}}}
 require 'skogix'
+-- fold settings
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
+vim.wo.fillchars = "fold:\\"
+vim.wo.foldnestmax = 3
+vim.wo.foldminlines = 1
+--}}}
