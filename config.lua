@@ -14,9 +14,10 @@ lvim.leader = "space"
 -- mappings{{{
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope find_files<cr>"
+lvim.keys.normal_mode["<leader>e"] = ":Telescope file_browser<cr>"
 lvim.keys.normal_mode["sh"] = ":lua vim.lsp.buf.hover()<cr>"
 lvim.keys.normal_mode["<leader>zen"] = ":ZenMode<cr>"
-lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>"
+lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 lvim.keys.normal_mode["<leader>w"] = "<cmd>HopWordAC<cr>"
 lvim.keys.normal_mode["<leader>b"] = "<cmd>HopWordBC<cr>"
 lvim.keys.normal_mode["<leader>j"] = "<cmd>HopLineAC<cr>"
@@ -58,14 +59,17 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 } --}}}
 -- builtin options{{{
+lvim.builtin.nvimtree.active = false
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+-- lvim.builtin.nvimtree.setup.renderer.icons.show.folder = false
+-- lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = true
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-lvim.builtin.nvimtree.setup.renderer.icons.show.folder = false
-lvim.builtin.nvimtree.setup.renderer.icons.show.folder_arrow = true --}}}
+lvim.builtin.terminal.insert_mappings = false
+--}}}
 -- treesitter{{{
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -178,7 +182,11 @@ lvim.plugins = {
   { 'tpope/vim-surround' },
   { 'hrsh7th/cmp-calc' },
   { 'gruvbox-community/gruvbox' },
-  -- { '' },
+  { 'nvim-telescope/telescope-file-browser.nvim' },
+  -- {
+  --   "ggandor/lightspeed.nvim",
+  --   event = "BufRead",
+  -- },
   -- { '' },
   -- { '' },
   -- { '' },
@@ -213,6 +221,8 @@ require 'hop'.setup {
   keys = 'aoeuhtns',
   multi_windows = true
 }
+require("telescope").load_extension "file_browser"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" --}}}
 require 'skogix'
+-- test
